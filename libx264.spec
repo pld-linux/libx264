@@ -1,6 +1,12 @@
+#
+# TODO:
+#		- pack svn snapshot. it has amd64 and sparc asm-accels
+#		  and can be used with mplayer.
+#
 Summary:	H264 encoder library
 Summary(pl):	Biblioteka koduj±ca H264
 Name:		libx264
+%define		_snap	20051013
 Version:	0.1.2
 Release:	1
 License:	GPL v2
