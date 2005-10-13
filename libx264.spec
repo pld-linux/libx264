@@ -15,6 +15,9 @@ URL:		http://developers.videolan.org/x264.html
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	libtool
+%ifarch %{ix86}
+BuildRequires:	nasm
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
