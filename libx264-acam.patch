@@ -1,15 +1,16 @@
 diff -Nur x264-snapshot-20051022-2245.orig/common/amd64/Makefile.am x264-snapshot-20051022-2245/common/amd64/Makefile.am
 --- x264-snapshot-20051022-2245.orig/common/amd64/Makefile.am	1970-01-01 01:00:00.000000000 +0100
 +++ x264-snapshot-20051022-2245/common/amd64/Makefile.am	2005-10-24 01:18:29.134240048 +0200
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,19 @@
 +SUFFIXES = .c .o .lo .asm
 +
 +YASM=@YASM@
 +YASMFLAGS=@YASMFLAGS@
++LINK = $(LIBTOOL) --tag=CC --mode=link $(CC) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 +
 +noinst_LTLIBRARIES = lib_x8664_yasm.la
 +
-+lib_x8686_yasm_la_SOURCES = dct-a.asm cpu-a.asm pixel-a.asm mc-a.asm \
++lib_x8664_yasm_la_SOURCES = dct-a.asm cpu-a.asm pixel-a.asm mc-a.asm \
 +	mc-a2.asm predict-a.asm pixel-sse2.asm quant-a.asm
 +
 +am_lib_x8664_yasm_la_OBJECTS = dct-a.lo cpu-a.lo pixel-a.lo mc-a.lo \
@@ -298,7 +299,7 @@ diff -Nur x264-snapshot-20051022-2245.orig/common/visualize.c x264-snapshot-2005
 diff -Nur x264-snapshot-20051022-2245.orig/configure.ac x264-snapshot-20051022-2245/configure.ac
 --- x264-snapshot-20051022-2245.orig/configure.ac	1970-01-01 01:00:00.000000000 +0100
 +++ x264-snapshot-20051022-2245/configure.ac	2005-10-24 01:03:37.053856880 +0200
-@@ -0,0 +1,138 @@
+@@ -0,0 +1,140 @@
 +AC_INIT(libx264, 0.1.2)
 +AC_PREREQ(2.53)
 +AC_CONFIG_SRCDIR([x264.c])
@@ -432,8 +433,10 @@ diff -Nur x264-snapshot-20051022-2245.orig/configure.ac x264-snapshot-20051022-2
 +
 +AC_CONFIG_FILES([Makefile
 +                 common/Makefile
++				 common/amd64/Makefile
 +				 common/i386/Makefile
 +				 common/ppc/Makefile
++				 common/sparc/Makefile
 +				 encoder/Makefile])
 +CFLAGS="$CFLAGS -D__X264__"
 +AC_OUTPUT
