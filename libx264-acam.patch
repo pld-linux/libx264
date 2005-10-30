@@ -525,3 +525,42 @@ diff -Nur x264-snapshot-20051022-2245.orig/x264.h x264-snapshot-20051022-2245/x2
  #include <stdarg.h>
  
  #define X264_BUILD 36
+--- x264-snapshot-20051022-2245/common/ppc/mc.c.orig	2005-10-22 20:45:02.000000000 +0000
++++ x264-snapshot-20051022-2245/common/ppc/mc.c	2005-10-30 21:53:12.282262072 +0000
+@@ -21,6 +21,10 @@
+  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111, USA.
+  *****************************************************************************/
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+--- x264-snapshot-20051022-2245/common/ppc/pixel.c.orig	2005-10-22 20:45:02.000000000 +0000
++++ x264-snapshot-20051022-2245/common/ppc/pixel.c	2005-10-30 21:56:32.323851128 +0000
+@@ -21,6 +21,10 @@
+  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111, USA.
+  *****************************************************************************/
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #ifdef SYS_LINUX
+ #include <altivec.h>
+ #endif
+--- x264-snapshot-20051022-2245/common/ppc/dct.c.orig	2005-10-22 20:45:02.000000000 +0000
++++ x264-snapshot-20051022-2245/common/ppc/dct.c	2005-10-30 22:04:08.401516784 +0000
+@@ -21,6 +21,10 @@
+  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111, USA.
+  *****************************************************************************/
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #ifdef SYS_LINUX
+ #include <altivec.h>
+ #endif
