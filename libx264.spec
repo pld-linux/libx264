@@ -21,7 +21,7 @@ BuildRequires:	libtool
 BuildRequires:	nasm
 %endif
 %ifarch %{x8664}
-BuildRequires:	yasm
+#BuildRequires:	yasm
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
