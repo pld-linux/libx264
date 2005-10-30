@@ -256,7 +256,7 @@ diff -Nur x264-snapshot-20051022-2245.orig/common/ppc/Makefile.am x264-snapshot-
 +
 +noinst_HEADERS = mc.h pixel.h ppccommon.h
 +
-+lib_ppc_la_SOURCES = mc.c pixel.c
++lib_ppc_la_SOURCES = mc.c pixel.c dct.c
 diff -Nur x264-snapshot-20051022-2245.orig/common/predict.c x264-snapshot-20051022-2245/common/predict.c
 --- x264-snapshot-20051022-2245.orig/common/predict.c	2005-10-22 22:45:02.000000000 +0200
 +++ x264-snapshot-20051022-2245/common/predict.c	2005-10-23 23:16:54.594178696 +0200
