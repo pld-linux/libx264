@@ -254,7 +254,7 @@ diff -Nur x264-snapshot-20051022-2245.orig/common/ppc/Makefile.am x264-snapshot-
 @@ -0,0 +1,5 @@
 +noinst_LTLIBRARIES = lib_ppc.la
 +
-+noinst_HEADERS = mc.h pixel.h ppccommon.h
++noinst_HEADERS = mc.h pixel.h dct.h ppccommon.h
 +
 +lib_ppc_la_SOURCES = mc.c pixel.c dct.c
 diff -Nur x264-snapshot-20051022-2245.orig/common/predict.c x264-snapshot-20051022-2245/common/predict.c
