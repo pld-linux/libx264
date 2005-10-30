@@ -380,7 +380,7 @@ diff -Nur x264-snapshot-20051022-2245.orig/configure.ac x264-snapshot-20051022-2
 +			AC_MSG_ERROR(nasm required for x86 build. Please Install it.)
 +		fi
 +		;;
-+	x86_64)
++	x86_64-NOTREADY)
 +		AC_DEFINE(CPU_x8664,1)
 +		AC_SUBST(CPU_x8664)
 +		AC_DEFINE(ARCH_X86_64,1)
