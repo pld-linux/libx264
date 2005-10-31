@@ -1,28 +1,27 @@
-#
-# TODO:
-#		- pack svn snapshot. it has amd64 and sparc asm-accels
-#		  and can be used with mplayer.
-#
 Summary:	H264 encoder library
 Summary(pl):	Biblioteka koduj±ca H264
 Name:		libx264
-%define		_snap	20051013
 Version:	0.1.2
-Release:	1
+%define	snap	20051022
+%define	snaph	2245
+Release:	1.%{snap}_%{snaph}.1
 License:	GPL v2
 Group:		Libraries
-# unofficial, debianized/libtoolized packaging;
-# no official releases, only svn://svn.videolan.org/x264/trunk x264
-Source0:	http://www.acarlab.com/misc-dnlds/%{name}-%{version}.tar.gz
-# Source0-md5:	3bbaa669b3661d33030378f4919be576
-Patch0:		%{name}-nasm.patch
-Patch1:		%{name}-link.patch
+# unofficial, debianized/libtoolized packaging:
+#Source0:	http://www.acarlab.com/misc-dnlds/%{name}-%{version}.tar.gz
+# but it's too old, so use snapshots...
+Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
+# Source0-md5:	ff795320eb918396eb309a9b9694182a
+Patch0:		%{name}-acam.patch
 URL:		http://developers.videolan.org/x264.html
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	libtool
 %ifarch %{ix86}
 BuildRequires:	nasm
+%endif
+%ifarch %{x8664}
+#BuildRequires:	yasm
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,9 +56,8 @@ Static x264 library.
 Statyczna biblioteka x264.
 
 %prep
-%setup -q
+%setup -q -n x264-snapshot-%{snap}-%{snaph}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
