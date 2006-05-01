@@ -4,7 +4,7 @@ Name:		libx264
 Version:	0.1.2
 %define	snap	20060430
 %define	snaph	2245
-Release:	0.%{snap}_%{snaph}.1
+Release:	1.%{snap}_%{snaph}.1
 License:	GPL v2
 Group:		Libraries
 # unofficial, debianized/libtoolized packaging:
