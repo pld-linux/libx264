@@ -21,10 +21,14 @@ BuildRequires:	libtool
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
+BuildRequires:	sed >= 4.0
 %ifarch %{x8664}
-#BuildRequires:	yasm
+BuildRequires:	yasm
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# encoder/macroblock.c breaks strict-aliasing rules
+%define		specflags	-fno-strict-aliasing
 
 %description
 libx264 library for encoding H264 video format.
@@ -60,15 +64,18 @@ Statyczna biblioteka x264.
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
 #%patch0 -p1
 %patch1 -p0
+sed -i 's:-O4::g' configure
 
 %build
-##%{__libtoolize}
-##%{__aclocal}
-##%{__autoconf}
-##%{__autoheader}
-##%{__automake}
-%configure \
-    --enable-shared
+./configure \
+        --prefix=%{_prefix} \
+        --exec-prefix=%{_prefix} \
+        --bindir=%{_bindir} \
+        --includedir=%{_includedir} \
+        --libdir=%{_libdir} \
+	--extra-cflags="%{rpmcflags}" \
+	--enable-shared
+
 %{__make}
 
 %install
