@@ -68,11 +68,11 @@ sed -i 's:-O4::g' configure
 
 %build
 ./configure \
-        --prefix=%{_prefix} \
-        --exec-prefix=%{_prefix} \
-        --bindir=%{_bindir} \
-        --includedir=%{_includedir} \
-        --libdir=%{_libdir} \
+	--prefix=%{_prefix} \
+	--exec-prefix=%{_prefix} \
+	--bindir=%{_bindir} \
+	--includedir=%{_includedir} \
+	--libdir=%{_libdir} \
 	--extra-cflags="%{rpmcflags}" \
 	--enable-shared
 
