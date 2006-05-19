@@ -12,12 +12,8 @@ Group:		Libraries
 # but it's too old, so use snapshots...
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
 # Source0-md5:	667c760dda91e9a3f50186d4676b5d5a
-#Patch0:		%{name}-acam.patch
-Patch1:		%{name}-liblink.patch
+Patch0:		%{name}-liblink.patch
 URL:		http://developers.videolan.org/x264.html
-BuildRequires:	autoconf >= 2.53
-BuildRequires:	automake
-BuildRequires:	libtool
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
@@ -62,11 +58,11 @@ Statyczna biblioteka x264.
 
 %prep
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
-#%patch0 -p1
-%patch1 -p0
+%patch0 -p0
 sed -i 's:-O4::g' configure
 
 %build
+CC="%{__cc}" \
 ./configure \
 	--prefix=%{_prefix} \
 	--exec-prefix=%{_prefix} \
