@@ -1,9 +1,9 @@
+%define	snap	20061024
+%define	snaph	2245
 Summary:	H264 encoder library
 Summary(pl):	Biblioteka koduj±ca H264
 Name:		libx264
 Version:	0.1.2
-%define	snap	20061024
-%define	snaph	2245
 Release:	1.%{snap}_%{snaph}.1
 License:	GPL v2
 Group:		Libraries
@@ -12,6 +12,7 @@ Group:		Libraries
 # but it's too old, so use snapshots...
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
 # Source0-md5:	529d619bd7ba8185143ba35b05fa69d0
+Patch0:		%{name}-alpha.patch
 URL:		http://developers.videolan.org/x264.html
 %ifarch %{ix86}
 BuildRequires:	nasm
@@ -58,6 +59,7 @@ Statyczna biblioteka x264.
 %prep
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
 sed -i 's:-O4::g' configure
+%patch0 -p1
 
 %build
 CC="%{__cc}" \
