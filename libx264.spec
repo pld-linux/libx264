@@ -2,7 +2,7 @@
 %define		snaph	2245
 %define		_rel	2
 Summary:	H264 encoder library
-Summary(pl):	Biblioteka koduj±ca H264
+Summary(pl.UTF-8):   Biblioteka kodujƒÖca H264
 Name:		libx264
 Version:	0.1.2
 Release:	1.%{snap}_%{snaph}.%{_rel}
@@ -30,31 +30,31 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 libx264 library for encoding H264 video format.
 
-%description -l pl
+%description -l pl.UTF-8
 Biblioteka libx264 do kodowania w formacie obrazu H264.
 
 %package devel
 Summary:	Header files for x264 library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki x264
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki x264
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for x264 library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki x264.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki x264.
 
 %package static
 Summary:	Static x264 library
-Summary(pl):	Statyczna biblioteka x264
+Summary(pl.UTF-8):   Statyczna biblioteka x264
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static x264 library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka x264.
 
 %prep
