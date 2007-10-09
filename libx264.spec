@@ -1,6 +1,6 @@
-%define		snap	20061024
+%define		snap	20071008
 %define		snaph	2245
-%define		_rel	2
+%define		_rel	1
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -12,7 +12,7 @@ Group:		Libraries
 #Source0:	http://www.acarlab.com/misc-dnlds/%{name}-%{version}.tar.gz
 # but it's too old, so use snapshots...
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	529d619bd7ba8185143ba35b05fa69d0
+# Source0-md5:	b1747dd3c78e83c0d56832ac2e5b83df
 Patch0:		%{name}-alpha.patch
 URL:		http://developers.videolan.org/x264.html
 %ifarch %{ix86}
