@@ -14,13 +14,13 @@ Group:		Libraries
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
 # Source0-md5:	b1747dd3c78e83c0d56832ac2e5b83df
 Patch0:		%{name}-alpha.patch
-URL:		http://developers.videolan.org/x264.html
+URL:		http://www.videolan.org/developers/x264.html
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
 BuildRequires:	sed >= 4.0
 %ifarch %{x8664}
-BuildRequires:	yasm
+BuildRequires:	yasm >= 0.6.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
