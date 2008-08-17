@@ -1,4 +1,4 @@
-%define		snap	20071008
+%define		snap	20080816
 %define		snaph	2245
 %define		_rel	1
 Summary:	H264 encoder library
@@ -12,14 +12,13 @@ Group:		Libraries
 #Source0:	http://www.acarlab.com/misc-dnlds/%{name}-%{version}.tar.gz
 # but it's too old, so use snapshots...
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	b1747dd3c78e83c0d56832ac2e5b83df
+# Source0-md5:	0a188b8e13c62f6a97eba1c5d4ab3a3f
 Patch0:		%{name}-alpha.patch
 URL:		http://www.videolan.org/developers/x264.html
-%ifarch %{ix86}
-BuildRequires:	nasm
-%endif
-BuildRequires:	sed >= 4.0
-%ifarch %{x8664}
+BuildRequires:	gettext-devel
+BuildRequires:	gtk+2-devel
+BuildRequires:	pkgconfig
+%ifarch %{ix86} %{x8664}
 BuildRequires:	yasm >= 0.6.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -57,10 +56,18 @@ Static x264 library.
 %description static -l pl.UTF-8
 Statyczna biblioteka x264.
 
+%package gui
+Summary:	Encoding GUI for x264
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description gui
+Encoding GUI for x264.
+
 %prep
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
-sed -i 's:-O4::g' configure
 %patch0 -p1
+sed -i 's:-O4::g' configure
 
 %build
 CC="%{__cc}" \
@@ -71,6 +78,8 @@ CC="%{__cc}" \
 	--includedir=%{_includedir} \
 	--libdir=%{_libdir} \
 	--extra-cflags="%{rpmcflags}" \
+	--enable-gtk \
+	--enable-pic \
 	--enable-shared
 
 %{__make}
@@ -80,6 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%find_lang x264_gtk
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -102,3 +113,9 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libx264.a
+
+%files gui -f x264_gtk.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/x264_gtk_encode
+%attr(755,root,root) %{_libdir}/libx264gtk.so.*
+%{_datadir}/x264
