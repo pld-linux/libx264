@@ -1,11 +1,11 @@
 %define		snap	20080816
 %define		snaph	2245
-%define		_rel	1
+%define		rel	1
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
 Version:	0.1.2
-Release:	1.%{snap}_%{snaph}.%{_rel}
+Release:	1.%{snap}_%{snaph}.%{rel}
 License:	GPL v2
 Group:		Libraries
 # unofficial, debianized/libtoolized packaging:
