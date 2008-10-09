@@ -1,6 +1,6 @@
 %define		snap	20080816
 %define		snaph	2245
-%define		rel	3
+%define		rel	4
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -14,6 +14,7 @@ Group:		Libraries
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
 # Source0-md5:	0a188b8e13c62f6a97eba1c5d4ab3a3f
 Patch0:		%{name}-alpha.patch
+Patch1:		%{name}-syms.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
@@ -109,6 +110,7 @@ Graficzny interfejs użytkownika do kodera x264.
 %prep
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
 %patch0 -p1
+%patch1 -p1
 sed -i 's:-O4::g' configure
 
 %build
