@@ -4,7 +4,7 @@
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
-Version:	0.1.2
+Version:	0.1.3
 Release:	1.%{snap}_%{snaph}.%{rel}
 License:	GPL v2+
 Group:		Libraries
