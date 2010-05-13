@@ -1,4 +1,4 @@
-%define		snap	20100424
+%define		snap	20100512
 %define		snaph	2245
 %define		rel	1
 Summary:	H264 encoder library
@@ -12,7 +12,7 @@ Group:		Libraries
 #Source0:	http://www.acarlab.com/misc-dnlds/%{name}-%{version}.tar.gz
 # but it's too old, so use snapshots...
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	0690fe67a6ed809a468fd8e556290a53
+# Source0-md5:	38c331e76ab11517261522a60da8dd31
 Patch0:		%{name}-alpha.patch
 Patch1:		%{name}-syms.patch
 URL:		http://www.videolan.org/developers/x264.html
