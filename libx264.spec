@@ -16,7 +16,6 @@ Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap
 Patch0:		%{name}-alpha.patch
 Patch1:		%{name}-syms.patch
 URL:		http://www.videolan.org/developers/x264.html
-BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig
 %ifarch %{ix86} %{x8664}
 BuildRequires:	yasm >= 0.6.0
