@@ -1,6 +1,6 @@
 %define		snap	20100512
 %define		snaph	2245
-%define		rel	2
+%define		rel		3
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -15,6 +15,7 @@ Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap
 # Source0-md5:	38c331e76ab11517261522a60da8dd31
 Patch0:		%{name}-alpha.patch
 Patch1:		%{name}-syms.patch
+Patch2:		altivec-no-vand.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
 %ifarch %{ix86} %{x8664}
@@ -59,6 +60,7 @@ Statyczna biblioteka x264.
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 sed -i 's:-O4::g' configure
 
 %build
