@@ -16,7 +16,6 @@ Group:		Libraries
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
 # Source0-md5:	763dc8b1c2148946a78f76a04262758b
 Patch0:		%{name}-alpha.patch
-#Patch1:		%{name}-syms.patch
 Patch1:		altivec-no-vand.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
