@@ -1,6 +1,10 @@
-%define		snap	20100512
+#
+# Conditional build:
+%bcond_with	bootstrap
+#
+%define		snap	20101031
 %define		snaph	2245
-%define		rel		3
+%define		rel		1
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -8,18 +12,25 @@ Version:	0.1.3
 Release:	1.%{snap}_%{snaph}.%{rel}
 License:	GPL v2+
 Group:		Libraries
-# unofficial, debianized/libtoolized packaging:
-#Source0:	http://www.acarlab.com/misc-dnlds/%{name}-%{version}.tar.gz
-# but it's too old, so use snapshots...
+# still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	38c331e76ab11517261522a60da8dd31
+# Source0-md5:	763dc8b1c2148946a78f76a04262758b
 Patch0:		%{name}-alpha.patch
-Patch1:		%{name}-syms.patch
-Patch2:		altivec-no-vand.patch
+#Patch1:		%{name}-syms.patch
+Patch1:		altivec-no-vand.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
 %ifarch %{ix86} %{x8664}
 BuildRequires:	yasm >= 0.6.0
+%endif
+%if %{without bootstrap}
+# which version exactly???
+# for full x264 CLI utility functionality it wants:
+# libswscale >= 0.9.0 (in pkgconfig file)
+# libav{format,codec,util} from ffmpeg >= r21854
+BuildRequires:	ffmpeg-devel >= 0.6.0
+# ffms2 >= 2.13.1.0 (pkgconfig) ???
+# gpac >= 2007-06-21
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,12 +67,24 @@ Static x264 library.
 %description static -l pl.UTF-8
 Statyczna biblioteka x264.
 
+%package -n x264
+Summary:	x264 CLI decoder
+Summary(pl.UTF-8):	Dekoder x264 działający z linii poleceń
+Group:		Applications/Multimedia
+Requires:	%{name} = %{version}-%{release}
+
+%description -n x264
+x264 CLI decoder.
+
+%description -n x264 -l pl.UTF-8
+Dekoder x264 działający z linii poleceń.
+
 %prep
 %setup -q -n x264-snapshot-%{snap}-%{snaph}
 %patch0 -p1
+%if "%{pld_release}" == "ac"
 %patch1 -p1
-%patch2 -p1
-sed -i 's:-O4::g' configure
+%endif
 
 %build
 CC="%{__cc}" \
@@ -92,8 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_bindir}/x264
-%attr(755,root,root) %{_libdir}/libx264.so.[0-9][0-9]
+%attr(755,root,root) %{_libdir}/libx264.so.107
 
 %files devel
 %defattr(644,root,root,755)
@@ -104,3 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libx264.a
+
+%files -n x264
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/x264
