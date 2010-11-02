@@ -28,7 +28,7 @@ BuildRequires:	yasm >= 0.6.0
 # libswscale >= 0.9.0 (in pkgconfig file)
 # libav{format,codec,util} from ffmpeg >= r21854
 BuildRequires:	ffmpeg-devel >= 0.6.0
-# ffms2 >= 2.13.1.0 (pkgconfig) ???
+BuildRequires:	ffmpegsource-devel >= 2.13.1
 # gpac >= 2007-06-21
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
