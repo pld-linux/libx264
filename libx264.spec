@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	bootstrap
 #
-%define		snap	20101031
+%define		snap	20110327
 %define		snaph	2245
 %define		rel		1
 Summary:	H264 encoder library
@@ -14,7 +14,7 @@ License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	763dc8b1c2148946a78f76a04262758b
+# Source0-md5:	7579aff8166a974a1b293cd18b9ead92
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 URL:		http://www.videolan.org/developers/x264.html
@@ -114,12 +114,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.107
+%attr(755,root,root) %{_libdir}/libx264.so.114
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libx264.so
 %{_includedir}/x264.h
+%{_includedir}/x264_config.h
 %{_pkgconfigdir}/x264.pc
 
 %files static
