@@ -1,0 +1,15 @@
+--- x264-snapshot-20110625-2245/configure~	2011-06-28 19:18:35.000000000 +0200
++++ x264-snapshot-20110625-2245/configure	2011-06-28 19:21:52.648341669 +0200
+@@ -719,9 +719,9 @@
+ 
+ if [ "$swscale" = "auto" ] ; then
+     swscale="no"
+-    if ${cross_prefix}pkg-config --exists libswscale 2>/dev/null; then
+-        SWSCALE_LIBS="$SWSCALE_LIBS $(${cross_prefix}pkg-config --libs libswscale)"
+-        SWSCALE_CFLAGS="$SWSCALE_CFLAGS $(${cross_prefix}pkg-config --cflags libswscale)"
++    if ${cross_prefix}pkg-config --exists libswscale libavutil 2>/dev/null; then
++        SWSCALE_LIBS="$SWSCALE_LIBS $(${cross_prefix}pkg-config --libs libswscale libavutil)"
++        SWSCALE_CFLAGS="$SWSCALE_CFLAGS $(${cross_prefix}pkg-config --cflags libswscale libavutil)"
+     fi
+     [ -z "$SWSCALE_LIBS" ] && SWSCALE_LIBS="-lswscale -lavutil"
+ 
