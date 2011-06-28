@@ -17,6 +17,7 @@ Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap
 # Source0-md5:	6463c144cd10c26d721fac212a747910
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
+Patch2:		%{name}-gpac.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
 %ifarch %{ix86} %{x8664}
@@ -27,9 +28,11 @@ BuildRequires:	yasm >= 0.6.0
 # for full x264 CLI utility functionality it wants:
 # libswscale >= 0.9.0 (in pkgconfig file)
 # libav{format,codec,util} from ffmpeg >= r21854
-BuildRequires:	ffmpeg-devel >= 0.8.0
+BuildRequires:	ffmpeg-devel >= 0.8
 BuildRequires:	ffmpegsource-devel >= 2.15
 # gpac >= 2007-06-21
+BuildRequires:	gpac-devel >= 0.4.5-2
+Requires:	gpac >= 0.4.5-2
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -84,6 +87,7 @@ Dekoder x264 działający z linii poleceń.
 %if "%{pld_release}" == "ac"
 %patch1 -p1
 %endif
+%patch2 -p1
 
 %build
 CC="%{__cc}" \

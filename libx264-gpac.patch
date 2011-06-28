@@ -1,0 +1,11 @@
+--- x264-snapshot-20110625-2245/configure.orig	2011-06-27 17:51:45.598468743 +0200
++++ x264-snapshot-20110625-2245/configure	2011-06-27 22:04:22.675642925 +0200
+@@ -806,7 +806,7 @@
+ 
+ if [ "$gpac" = "auto" ] ; then
+     gpac="no"
+-    cc_check "" -lz && GPAC_LIBS="-lgpac_static -lz" || GPAC_LIBS="-lgpac_static"
++    cc_check "" -lz && GPAC_LIBS="-lgpac -lz" || GPAC_LIBS="-lgpac"
+     if [ "$SYS" = "WINDOWS" ] ; then
+         GPAC_LIBS="$GPAC_LIBS -lwinmm"
+     fi
