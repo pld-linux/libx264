@@ -2,9 +2,9 @@
 # Conditional build:
 %bcond_with	bootstrap
 #
-%define		snap	20110625
+%define		snap	20110927
 %define		snaph	2245
-%define		rel		5
+%define		rel		1
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -14,11 +14,10 @@ License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	6463c144cd10c26d721fac212a747910
+# Source0-md5:	ecd7c841e72d577bf4084338f2054228
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
-Patch3:		%{name}-ffmpeg.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
 %ifarch %{ix86} %{x8664}
@@ -89,7 +88,6 @@ Dekoder x264 działający z linii poleceń.
 %patch1 -p1
 %endif
 %patch2 -p1
-%patch3 -p1
 
 %build
 CC="%{__cc}" \
@@ -121,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.115
+%attr(755,root,root) %{_libdir}/libx264.so.118
 
 %files devel
 %defattr(644,root,root,755)
