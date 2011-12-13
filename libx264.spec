@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	bootstrap
 #
-%define		snap	20110927
+%define		snap	20111212
 %define		snaph	2245
 %define		rel		1
 Summary:	H264 encoder library
@@ -14,7 +14,7 @@ License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	ecd7c841e72d577bf4084338f2054228
+# Source0-md5:	586e5a6e49bef5b026702c327b1edda2
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
@@ -29,7 +29,7 @@ BuildRequires:	yasm >= 0.6.0
 # libswscale >= 0.9.0 (in pkgconfig file)
 # libav{format,codec,util} from ffmpeg >= r21854
 BuildRequires:	ffmpeg-devel >= 0.7.1
-BuildRequires:	ffmpegsource-devel >= 2.15
+BuildRequires:	ffmpegsource-devel >= 2.16
 # gpac >= 2007-06-21
 BuildRequires:	gpac-devel >= 0.4.5-2
 Requires:	gpac >= 0.4.5-2
@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.118
+%attr(755,root,root) %{_libdir}/libx264.so.120
 
 %files devel
 %defattr(644,root,root,755)
