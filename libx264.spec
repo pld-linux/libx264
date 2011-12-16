@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	bootstrap
+%bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
 #
 %define		snap	20111212
 %define		snaph	2245
