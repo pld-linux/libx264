@@ -2,9 +2,9 @@
 # Conditional build:
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
 #
-%define		snap	20111212
+%define		snap	20120302
 %define		snaph	2245
-%define		rel		2
+%define		rel		1
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -14,7 +14,7 @@ License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	586e5a6e49bef5b026702c327b1edda2
+# Source0-md5:	0d8c9c3ab208a444de137e2983637f14
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
