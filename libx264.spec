@@ -4,7 +4,7 @@
 #
 %define		snap	20120302
 %define		snaph	2245
-%define		rel	3
+%define		rel	4
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
