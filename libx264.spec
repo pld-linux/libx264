@@ -4,7 +4,7 @@
 #
 %define		snap	20120302
 %define		snaph	2245
-%define		rel	4
+%define		rel	5
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -31,8 +31,8 @@ BuildRequires:	yasm >= 0.6.0
 BuildRequires:	ffmpeg-devel >= 0.7.1
 BuildRequires:	ffmpegsource-devel >= 2.16
 # gpac >= 2007-06-21
-BuildRequires:	gpac-devel >= 0.4.5-2
-Requires:	gpac >= 0.4.5-2
+BuildRequires:	gpac-devel >= 0.5.0-3
+Requires:	gpac >= 0.5.0-3
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
