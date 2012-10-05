@@ -32,7 +32,6 @@ BuildRequires:	ffmpeg-devel >= 0.7.1
 BuildRequires:	ffmpegsource-devel >= 2.16
 # gpac >= 2007-06-21
 BuildRequires:	gpac-devel >= 0.5.0-3
-Requires:	gpac >= 0.5.0-3
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,6 +73,9 @@ Summary:	x264 CLI decoder
 Summary(pl.UTF-8):	Dekoder x264 działający z linii poleceń
 Group:		Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
+%if %{without bootstrap}
+Requires:	gpac >= 0.5.0-3
+%endif
 
 %description -n x264
 x264 CLI decoder.
