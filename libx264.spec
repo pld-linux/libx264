@@ -121,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.120
+%attr(755,root,root) %{_libdir}/libx264.so.138
 
 %files devel
 %defattr(644,root,root,755)
