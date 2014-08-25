@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
 #
-%define		snap	20140328
+%define		snap	20140824
 %define		snaph	2245
 %define		rel	1
 Summary:	H264 encoder library
@@ -14,7 +14,7 @@ License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	a71261477a692089b462a8fa387ba56b
+# Source0-md5:	d2a779a864254ca426dfb1f3115987a0
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
