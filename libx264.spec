@@ -1,10 +1,10 @@
 #
 # Conditional build:
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
-#
+
+%define		rel	3
 %define		snap	20140824
 %define		snaph	2245
-%define		rel	3
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -20,7 +20,7 @@ Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
-%ifarch %{ix86} %{x8664}
+%ifarch %{ix86} %{x8664} x32
 BuildRequires:	yasm >= 0.6.0
 %endif
 %if %{without bootstrap}
