@@ -1,6 +1,11 @@
 #
 # Conditional build:
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
+%bcond_without	asm		# disable asm
+
+%ifnarch %{ix86} %{x8664} x32
+%undefine	with_asm
+%endif
 
 %define		rel	3
 %define		snap	20140824
@@ -20,9 +25,7 @@ Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
-%ifarch %{ix86} %{x8664} x32
-BuildRequires:	yasm >= 1.2.0
-%endif
+%{?with_asm:BuildRequires:	yasm >= 1.2.0}
 %if %{without bootstrap}
 # which version exactly???
 # for full x264 CLI utility functionality it wants:
@@ -100,6 +103,7 @@ CC="%{__cc}" \
 	--includedir=%{_includedir} \
 	--libdir=%{_libdir} \
 	--extra-cflags="%{rpmcflags}" \
+	%{!?with_asm:--disable-asm} \
 	--enable-pic \
 	--enable-shared \
 	--enable-static
