@@ -21,7 +21,7 @@ Patch2:		%{name}-gpac.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
 %ifarch %{ix86} %{x8664} x32
-BuildRequires:	yasm >= 0.6.0
+BuildRequires:	yasm >= 1.2.0
 %endif
 %if %{without bootstrap}
 # which version exactly???
