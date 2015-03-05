@@ -3,7 +3,7 @@
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
 %bcond_without	asm		# disable asm
 
-%ifnarch %{ix86} %{x8664} x32
+%ifnarch %{ix86} %{x8664}
 %undefine	with_asm
 %endif
 
@@ -97,6 +97,7 @@ Dekoder x264 działający z linii poleceń.
 %build
 CC="%{__cc}" \
 ./configure \
+	--host=%{_target_platform} \
 	--prefix=%{_prefix} \
 	--exec-prefix=%{_prefix} \
 	--bindir=%{_bindir} \
