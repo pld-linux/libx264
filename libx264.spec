@@ -7,7 +7,7 @@
 %undefine	with_asm
 %endif
 
-%define		rel	6
+%define		rel	7
 %define		snap	20140824
 %define		snaph	2245
 Summary:	H264 encoder library
@@ -24,6 +24,7 @@ Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
 Patch3:		x32.patch
+Patch4:		ffmpeg3.patch
 URL:		http://www.videolan.org/developers/x264.html
 BuildRequires:	pkgconfig
 %{?with_asm:BuildRequires:	yasm >= 1.2.0}
@@ -95,6 +96,7 @@ Dekoder x264 działający z linii poleceń.
 %endif
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 CC="%{__cc}" \
