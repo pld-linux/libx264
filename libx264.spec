@@ -7,8 +7,8 @@
 %undefine	with_asm
 %endif
 
-%define		rel	8
-%define		snap	20140824
+%define		rel	1
+%define		snap	20190110
 %define		snaph	2245
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
@@ -19,15 +19,14 @@ License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
 Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	d2a779a864254ca426dfb1f3115987a0
+# Source0-md5:	ef5f7a7eec118f4641e743a894de90c4
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
 Patch3:		x32.patch
-Patch4:		ffmpeg3.patch
 URL:		http://www.videolan.org/developers/x264.html
+%{?with_asm:BuildRequires:	nasm >= 2.13}
 BuildRequires:	pkgconfig
-%{?with_asm:BuildRequires:	yasm >= 1.2.0}
 %if %{without bootstrap}
 # which version exactly???
 # for full x264 CLI utility functionality it wants:
@@ -96,7 +95,6 @@ Dekoder x264 działający z linii poleceń.
 %endif
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 CC="%{__cc}" \
@@ -130,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.142
+%attr(755,root,root) %{_libdir}/libx264.so.157
 
 %files devel
 %defattr(644,root,root,755)
