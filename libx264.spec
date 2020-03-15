@@ -2,13 +2,14 @@
 # Conditional build:
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
 %bcond_without	asm		# disable asm
+%bcond_without	lsmash		# lsmash for MP4 (preferred over gpac)
 
 %ifnarch %{ix86} %{x8664}
 %undefine	with_asm
 %endif
 
 %define		rel	1
-%define		snap	20190110
+%define		snap	20191217
 %define		snaph	2245
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
@@ -18,8 +19,9 @@ Release:	1.%{snap}_%{snaph}.%{rel}
 License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
-Source0:	ftp://ftp.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	ef5f7a7eec118f4641e743a894de90c4
+# for further changes see: https://code.videolan.org/videolan/x264/
+Source0:	https://download.videolan.org/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
+# Source0-md5:	6d6b7b49518ddfd42c4e3577b5242b31
 Patch0:		%{name}-alpha.patch
 Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
@@ -33,9 +35,10 @@ BuildRequires:	pkgconfig
 # libswscale >= 0.9.0 (in pkgconfig file)
 # libav{format,codec,util} from ffmpeg >= r21854
 BuildRequires:	ffmpeg-devel >= 0.7.1
-BuildRequires:	ffmpegsource-devel >= 2.16
+BuildRequires:	ffms2-devel >= 2.21
 # gpac >= 2007-06-21
-BuildRequires:	gpac-devel >= 0.5.0-3
+%{!?with_lsmash:BuildRequires:	gpac-devel >= 0.5.0-3}
+%{?with_lsmash:BuildRequires:	l-smash-devel >= 1.5}
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -78,7 +81,12 @@ Summary(pl.UTF-8):	Dekoder x264 działający z linii poleceń
 Group:		Applications/Multimedia
 Requires:	%{name} = %{version}-%{release}
 %if %{without bootstrap}
+Requires:	ffms2 >= 2.21
+%if %{with lsmash}
+Requires:	l-smash >= 1.5
+%else
 Requires:	gpac >= 0.5.0-3
+%endif
 %endif
 
 %description -n x264
