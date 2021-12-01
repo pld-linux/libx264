@@ -27,7 +27,9 @@ Patch1:		altivec-no-vand.patch
 Patch2:		%{name}-gpac.patch
 Patch3:		x32.patch
 URL:		http://www.videolan.org/developers/x264.html
+%ifarch %{ix86} %{x8664}
 %{?with_asm:BuildRequires:	nasm >= 2.13}
+%endif
 BuildRequires:	pkgconfig
 %if %{without bootstrap}
 # which version exactly???
