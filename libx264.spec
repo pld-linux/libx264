@@ -4,7 +4,7 @@
 %bcond_without	asm		# disable asm
 %bcond_without	lsmash		# lsmash for MP4 (preferred over gpac)
 
-%ifnarch %{ix86} %{x8664}
+%ifnarch %{ix86} %{x8664} aarch64
 %undefine	with_asm
 %endif
 
