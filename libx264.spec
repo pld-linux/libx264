@@ -8,7 +8,7 @@
 %undefine	with_asm
 %endif
 
-%define		rel	1
+%define		rel	2
 %define		snap	20191217
 %define		snaph	2245
 Summary:	H264 encoder library

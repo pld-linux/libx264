@@ -18,7 +18,7 @@
 -        [ $compiler = GNU ] && CFLAGS="-m64 $CFLAGS" && LDFLAGS="-m64 $LDFLAGS"
 +        [ $compiler = GNU ] && CFLAGS="$CFLAGS" && LDFLAGS="$LDFLAGS"
          if [ "$SYS" = MACOSX ]; then
-             ASFLAGS="$ASFLAGS -f macho64 -DPIC -DPREFIX"
+             ASFLAGS="$ASFLAGS -f macho64 -DPREFIX"
              if cc_check '' "-arch x86_64"; then
 @@ -641,7 +641,14 @@
                  RCFLAGS="--target=pe-x86-64 $RCFLAGS"
