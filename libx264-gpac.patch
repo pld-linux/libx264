@@ -1,11 +1,11 @@
---- x264-snapshot-20140328-2245/configure~	2014-03-29 08:43:39.000000000 +0100
-+++ x264-snapshot-20140328-2245/configure	2014-03-29 08:44:32.177299477 +0100
-@@ -950,7 +950,7 @@
- 
- if [ "$gpac" = "auto" -a "$lsmash" != "yes" ] ; then
-     gpac="no"
--    GPAC_LIBS="-lgpac_static"
-+    GPAC_LIBS="-lgpac"
-     cc_check "" -lz && GPAC_LIBS="$GPAC_LIBS -lz"
-     if [ "$SYS" = "WINDOWS" ] ; then
-         cc_check "" -lws2_32 && GPAC_LIBS="$GPAC_LIBS -lws2_32"
+--- x264-12426f5f4906e34d483a07da0debb6d56c6f8434/configure.orig	2024-02-20 00:03:00.000000000 +0100
++++ x264-12426f5f4906e34d483a07da0debb6d56c6f8434/configure	2024-02-28 06:09:32.303124601 +0100
+@@ -1285,7 +1285,7 @@ if [ "$gpac" = "auto" -a "$lsmash" != "y
+         fi
+     fi
+     if [ -z "$GPAC_LIBS" ] ; then
+-        GPAC_LIBS="-lgpac_static"
++        GPAC_LIBS="-lgpac"
+         cc_check "" -lz && GPAC_LIBS="$GPAC_LIBS -lz"
+         cc_check "" -ldl && GPAC_LIBS="$GPAC_LIBS -ldl"
+         if [ "$SYS" = "WINDOWS" ] ; then

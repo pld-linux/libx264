@@ -8,29 +8,31 @@
 %undefine	with_asm
 %endif
 
-%define		rel	2
-%define		snap	20191217
-%define		snaph	2245
+%define		gitref	12426f5f4906e34d483a07da0debb6d56c6f8434
+%define		rel	1
+%define		snap	20240220
+%define		api_ver	164
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
-Version:	0.1.3
-Release:	1.%{snap}_%{snaph}.%{rel}
+Version:	0.%{api_ver}
+Release:	0.%{snap}.%{rel}
 License:	GPL v2+
 Group:		Libraries
 # still no releases, use snapshots
+# previously available at https://download.videolan.org/videolan/x264/snapshots/
 # for further changes see: https://code.videolan.org/videolan/x264/
-Source0:	https://download.videolan.org/videolan/x264/snapshots/x264-snapshot-%{snap}-%{snaph}.tar.bz2
-# Source0-md5:	6d6b7b49518ddfd42c4e3577b5242b31
+Source0:	https://code.videolan.org/videolan/x264/-/archive/%{gitref}/x264-%{gitref}.tar.bz2
+# Source0-md5:	b46bb3b0521e2d5fdefeed345bd42f94
 Patch0:		%{name}-alpha.patch
-Patch1:		altivec-no-vand.patch
-Patch2:		%{name}-gpac.patch
-Patch3:		x32.patch
+Patch1:		%{name}-gpac.patch
+Patch2:		x32.patch
 URL:		http://www.videolan.org/developers/x264.html
 %ifarch %{ix86} %{x8664}
 %{?with_asm:BuildRequires:	nasm >= 2.13}
 %endif
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.673
 %if %{without bootstrap}
 # which version exactly???
 # for full x264 CLI utility functionality it wants:
@@ -39,7 +41,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	ffmpeg-devel >= 0.7.1
 BuildRequires:	ffms2-devel >= 2.21
 # gpac >= 2007-06-21
-%{!?with_lsmash:BuildRequires:	gpac-devel >= 0.5.0-3}
+%{!?with_lsmash:BuildRequires:	gpac-devel >= 0.8.0}
 %{?with_lsmash:BuildRequires:	l-smash-devel >= 1.5}
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -87,7 +89,7 @@ Requires:	ffms2 >= 2.21
 %if %{with lsmash}
 Requires:	l-smash >= 1.5
 %else
-Requires:	gpac >= 0.5.0-3
+Requires:	gpac >= 0.8.0
 %endif
 %endif
 
@@ -98,13 +100,10 @@ x264 CLI decoder.
 Dekoder x264 działający z linii poleceń.
 
 %prep
-%setup -q -n x264-snapshot-%{snap}-%{snaph}
+%setup -q -n x264-%{gitref}
 %patch0 -p1
-%if "%{pld_release}" == "ac"
 %patch1 -p1
-%endif
 %patch2 -p1
-%patch3 -p1
 
 %build
 CC="%{__cc}" \
@@ -138,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.157
+%attr(755,root,root) %{_libdir}/libx264.so.%{api_ver}
 
 %files devel
 %defattr(644,root,root,755)
@@ -154,3 +153,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n x264
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/x264
+%{bash_compdir}/x264
