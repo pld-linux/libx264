@@ -9,7 +9,7 @@
 %endif
 
 %define		gitref	12426f5f4906e34d483a07da0debb6d56c6f8434
-%define		rel	1
+%define		rel	2
 %define		snap	20240220
 %define		api_ver	164
 Summary:	H264 encoder library
