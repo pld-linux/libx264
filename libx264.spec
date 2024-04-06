@@ -115,6 +115,7 @@ CC="%{__cc}" \
 	--includedir=%{_includedir} \
 	--libdir=%{_libdir} \
 	--extra-cflags="%{rpmcflags}" \
+	--bashcompletionsdir="%{bash_compdir}" \
 	%{!?with_asm:--disable-asm} \
 	--enable-pic \
 	--enable-shared \
