@@ -3,6 +3,7 @@
 %bcond_with	bootstrap	# no ffmpeg/gpac support in x264 utility
 %bcond_without	asm		# disable asm
 %bcond_without	lsmash		# lsmash for MP4 (preferred over gpac)
+%bcond_without	static_libs	# static library
 
 %ifnarch %{ix86} %{x8664} aarch64
 %undefine	with_asm
@@ -119,7 +120,7 @@ CC="%{__cc}" \
 	%{!?with_asm:--disable-asm} \
 	--enable-pic \
 	--enable-shared \
-	--enable-static
+	%{?with_static_libs:--enable-static}
 
 %{__make}
 
@@ -147,9 +148,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/x264_config.h
 %{_pkgconfigdir}/x264.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libx264.a
+%endif
 
 %files -n x264
 %defattr(644,root,root,755)
