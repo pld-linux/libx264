@@ -102,9 +102,9 @@ Dekoder x264 działający z linii poleceń.
 
 %prep
 %setup -q -n x264-%{gitref}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 
 %build
 CC="%{__cc}" \
