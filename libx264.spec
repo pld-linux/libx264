@@ -9,10 +9,10 @@
 %undefine	with_asm
 %endif
 
-%define		gitref	12426f5f4906e34d483a07da0debb6d56c6f8434
-%define		rel	3
-%define		snap	20240220
-%define		api_ver	164
+%define		gitref	0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee
+%define		rel	1
+%define		snap	20250911
+%define		api_ver	165
 Summary:	H264 encoder library
 Summary(pl.UTF-8):	Biblioteka kodująca H264
 Name:		libx264
@@ -24,8 +24,7 @@ Group:		Libraries
 # previously available at https://download.videolan.org/videolan/x264/snapshots/
 # for further changes see: https://code.videolan.org/videolan/x264/
 Source0:	https://code.videolan.org/videolan/x264/-/archive/%{gitref}/x264-%{gitref}.tar.bz2
-# Source0-md5:	b46bb3b0521e2d5fdefeed345bd42f94
-Patch0:		%{name}-alpha.patch
+# Source0-md5:	677789f866d0dce424e5b999627ca4a6
 Patch1:		%{name}-gpac.patch
 Patch2:		x32.patch
 URL:		http://www.videolan.org/developers/x264.html
@@ -102,7 +101,6 @@ Dekoder x264 działający z linii poleceń.
 
 %prep
 %setup -q -n x264-%{gitref}
-%patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p1
 
@@ -139,11 +137,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS
-%attr(755,root,root) %{_libdir}/libx264.so.%{api_ver}
+%{_libdir}/libx264.so.%{api_ver}
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libx264.so
+%{_libdir}/libx264.so
 %{_includedir}/x264.h
 %{_includedir}/x264_config.h
 %{_pkgconfigdir}/x264.pc
